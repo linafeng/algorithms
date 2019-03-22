@@ -1,6 +1,6 @@
 # algorithms
 算法
 
-MainTest:
+FactorialTest:
 -n的阶乘2种实现
 
