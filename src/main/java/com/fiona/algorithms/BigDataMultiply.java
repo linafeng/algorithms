@@ -10,28 +10,26 @@ package com.fiona.algorithms;
 public class BigDataMultiply {
 
 	public static void main(String[] args) {
-		int [] k=bigDataMultiple(new int[]{1,2,3},new int[]{6});
+		int [] k=bigDataMultiple(new int[]{1,2,3},new int[]{6,1});
 		for(int e:k) {
 			System.out.print(e);
 		}
 
 	}
-	public static int[] bigDataMultiple(int[]arr1,int arr2[]) {
-		int len=arr1.length+arr2.length+1;
-		int[] arr3=new int[len];
-		int offset=len-arr1.length;
-		for(int q=arr2.length-1;q>=0;q--) {
-			for(int i=arr1.length-1;i>=0;i--) {
-				arr3[i+offset-(arr2.length-1-q)]+=arr1[i]*arr2[q]*Math.pow(10, (arr2.length-1-q));
-				for(int k=arr1.length-1;k>0;k--) {
-					arr3[k-1]+=arr3[k]/10;
-					arr3[k]=arr3[k]%10;
-				}
-
+	public static int[] bigDataMultiple(int[]arrI,int arrQ[]) {
+		int len=arrI.length+arrQ.length+1;
+		int[] rs=new int[len];
+		int offset=len-arrI.length;
+		for(int q=arrQ.length-1;q>=0;q--) {
+			for(int i=arrI.length-1;i>=0;i--) {
+				rs[i+offset-(arrQ.length-1-q)]+=arrI[i]*arrQ[q];
+			}
+			for(int k=rs.length-1;k>0;k--) {
+				rs[k-1]+=rs[k]/10;
+				rs[k]=rs[k]%10;
 			}
 		}
-
-		return arr3;
+		return rs;
 	}
 	public static int[] bigDataMultiple(int[]arr,int n) {
 		for(int i=0;i<arr.length;i++) {
