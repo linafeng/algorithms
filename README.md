@@ -13,5 +13,13 @@ BinarySearch:
 FibonacciSeq:
 -斐波拉契数列
 
+BubbleSort:
+-冒泡排序
+
+QuickSorts:
+-快速排序
+
+
+
 
 
