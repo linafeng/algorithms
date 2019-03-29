@@ -19,6 +19,13 @@ BubbleSort:
 QuickSorts:
 -快速排序
 
+InsertSort:
+-插入排序
+
+
+TestCase
+
+Test1:将一个char数组排序小写放前面，数字放中间，大写放后面，字母间不排序
 
 
 
