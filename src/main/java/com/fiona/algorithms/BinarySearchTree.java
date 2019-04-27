@@ -1,4 +1,7 @@
 package com.fiona.algorithms;
+
+import java.util.Objects;
+
 /**
  * 
  * <p>
@@ -154,6 +157,24 @@ public class BinarySearchTree {
 
 	} 
 
+	/**
+	 * 计算深度
+	 * @return
+	 * @author fenglili
+	 * Date:2019年4月14日；
+	 */
+	public  int findDepthNode(Node rootNode) {	
+		int left=0;
+		int right=0;
+		if(Objects.nonNull(rootNode.left)) {
+			left=findDepthNode(rootNode.left);
+		}
+		if(Objects.nonNull(rootNode.right)) {
+			right=findDepthNode(rootNode.right);
+		}
+		return (left>right?left:right)+1;
+	}
+
 	public static void main(String[] args) {
 		Node node15=new Node(15);
 		Node node17=new Node(17);
@@ -178,13 +199,15 @@ public class BinarySearchTree {
 		node33.left=node16;
 		node33.right=node50;
 
-		
+
 		BinarySearchTree tree=new BinarySearchTree();
 		tree.tree=node33;
 		System.out.println(tree.find(16).data);
 		System.out.println("最小的"+tree.findMin().data);
 		System.out.println("最大的"+tree.findMax().data);
 
+		int depth=tree.findDepthNode(node33);
+		System.out.println("深度为"+depth);
 		tree.delete(18);
 
 		System.out.println(tree);
