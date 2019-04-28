@@ -18,9 +18,10 @@ public class QuickSorts {
 	 * @param arr
 	 * @return
 	 */
-	public static void quicksort(int[] arr,int s,int e) {
-		int num=arr[s];//标杆
+	public static void quicksort(int[] arr,int s,int e) {		
 		int i=s;
+		int num=arr[i];//标杆
+		System.out.println("标杆"+num);
 		int j=e;
 		while(i<j) {
 			while(i<j) {
@@ -42,14 +43,14 @@ public class QuickSorts {
 		System.out.println("排序后"+Arrays.toString(arr));
 		//递归
 		if(i>s) {
+			System.out.println("左边序号间隔["+s+"-"+(i-1)+"]开始排序");
 			quicksort(arr,s,i-1);//左边序列。第一个索引位置到关键值索引-1
-		}else if(j<e) {
+		}
+		if(j<e) {
+			System.out.println("右边序号间隔["+(j+1)+"-"+(e)+"]开始排序");
 			quicksort(arr,j+1,e);//右边序列。从关键值索引+1到最后一个
 		}
-		
-
 
 	}
-
 
 }
