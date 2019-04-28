@@ -20,6 +20,7 @@ public class BubbleSort {
 	public static int[] bubblesort(int[] arr){
 		for(int i=0;i<arr.length-1;i++){//外层循环控制排序趟数，规律5个数走4趟
 			for(int j=0;j<arr.length-1-i;j++){//内层循环控制每一趟排序多少次
+				//首先比如第一轮，相邻两个对比小的放后面，依次往后比，排完后是最小的被排到最后，所以第二轮的j只需要0到arr.length-1-i，再去把最小的排到后面
 				if(arr[j]>arr[j+1]){
 					arr[j]=arr[j]^arr[j+1];
 					arr[j+1]=arr[j]^arr[j+1];
