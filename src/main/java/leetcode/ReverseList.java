@@ -52,9 +52,9 @@ public class ReverseList {
         ListNode curr = head;
         while (curr != null) {
             ListNode nextTemp = curr.next;//先把后面的链子拷贝一份放一边
-            curr.next = prev;//将后面的链子替换为前置节点
-            prev = curr;//对前置节点赋值为当前节点，于是前置节点的下一个节点还是他自己
-            curr = nextTemp;
+            curr.next = prev;//取用第一个值，将后面的链子替换为前置节点，（新尾部构造起，尾部next节点为空）
+            prev = curr;//对前置节点赋值为当前节点，curr.next为新的链带到下次循环
+            curr = nextTemp;//将当前节点赋值为备份的后面的链子用于新循环
         }
         return prev;
     }
