@@ -3,48 +3,43 @@ package leetcode;
 import java.util.*;
 
 public class ThreeSum {
-    private static int[] nums={-1, 0, 1, 2, -1, -4,1};
-    public static void main(String[] args) {
-        ThreeSum obj=new ThreeSum();
-        obj.threeSum(nums);
-    }
-    public List<List<Integer>> threeSum(int[] nums) {
-        Map<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            if(map.get(nums[i])!=null) {
-                map.put(nums[i],map.get(nums[i])+1);
-            }else{
-                map.put(nums[i],1);
-            }
-        }
-        Set<Integer> set=map.keySet();
-        StringBuilder rs=new StringBuilder();
-        Integer[] newnums=set.toArray(new Integer[set.size()]);
-        for(int i=0;i<newnums.length;i++){
-            for(int j=i+1;j<newnums.length;j++){
-                if(map.get(newnums[i]+newnums[j])!=null){
-                    if(newnums[i]!=0&&newnums[j]!=0){
-                        rs.append(newnums[i]+","+newnums[j]+","+(newnums[i]+newnums[j])+";");
-                        continue;
-                    }
-                    if(newnums[i]==0 &&map.get(newnums[j])>1){
-                        rs.append(newnums[i]+","+newnums[j]+","+newnums[j]+";");
-                    }else if(newnums[j]==0 &&map.get(newnums[i])>1){
-                        rs.append(newnums[i]+","+newnums[j]+","+newnums[i]+";");
-                    }
+    private static int[] nums = {-2,-1,-1,2,3};
 
+    public static void main(String[] args) {
+        ThreeSum obj = new ThreeSum();
+        List<List<Integer>> list = obj.threeSum(nums);
+        list.forEach(o -> {
+            System.out.println(Arrays.toString(o.toArray()));
+        });
+    }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> ans = new ArrayList();
+        int len = nums.length;
+        if(nums == null || len < 3) return ans;
+        Arrays.sort(nums); // 排序
+        for (int i = 0; i < len ; i++) {
+            if(nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+            if(i > 0 && nums[i] == nums[i-1]) continue; // 去重
+            int L = i+1;
+            int R = len-1;
+            while(L < R){
+                int sum = nums[i] + nums[L] + nums[R];
+                if(sum == 0){
+                    ans.add(Arrays.asList(nums[i],nums[L],nums[R]));
+                    while (L<R && nums[L] == nums[L+1]) L++; // 去重
+                    while (L<R && nums[R] == nums[R-1]) R--; // 去重
+                    L++;
+                    R--;
+                }else if (sum < 0) {
+                    L++;
+                }else if (sum > 0){
+                    R--;
                 }
             }
         }
-        map.forEach((k,v)->{
-            if(v>1&&map.get(k*2)!=null){
-                rs.append(k+","+k+","+(k*2)+";");
-            }
-        });
-        System.out.println(rs.toString());
-        return null;
-
-
-
+        return ans;
     }
+
+
 }
